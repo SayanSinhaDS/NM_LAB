@@ -1,0 +1,42 @@
+#include<stdio.h>
+  #include<math.h> 
+
+  
+  float f(float x)
+  {
+     float z;
+     z=x*x*x+2*x+1;
+     return z;
+  }
+  
+  void main()
+  {
+     int count=1,n;
+     float a,b,m;
+     
+     printf("ENTER THE INTERVALS A and B :- ");
+     xyz: 
+     scanf("%f%f",&a,&b); 
+     printf("No.of Iteration.");
+     scanf("%d",&n);
+     if(f(a)*f(b)<0);
+     {
+      m=(a+b)/2;
+      while(count<=n)
+       {
+       if(f(a)*f(m)<0)
+         {
+           b=m;
+         }
+      else
+      {
+          a=m;
+      }
+       count++;
+       m=(a+b)/2;
+     }
+     printf("Answer is : %0.3f",m);
+    }
+  
+   }
+   
