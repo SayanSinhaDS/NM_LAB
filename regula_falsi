@@ -1,0 +1,39 @@
+#include<stdio.h>
+#include<math.h>
+float f(float x)
+{
+	return (x*x*x+2*x+1);
+}
+int main()
+{
+	int n,i;
+	float e,a,b,x;
+	printf("Enter the desire accuracy:\n");
+	scanf("%f",&e);
+	printf("Enter possible upper limit of the interval containing the root: \n");
+	scanf("%d",&n);
+	for(i=-n ;i<=n;i++)
+	{
+		a=i;
+		b=i+1;
+		if(f(a)*f(b)<0)
+		{
+			break;
+		}
+	}
+	printf("Enter the value of a and b:");
+	printf("%f %f\n",a,b);
+	
+	do{
+		x=((a*f(b)-b*f(a))/(f(b)-f(a)));
+		if(f(b)*f(x)<0.0)
+		{
+			a=x;
+		}
+		else
+		{
+			b=x;
+		}
+	}while(fabs (f(x))>=e);
+	printf("The root is: %0.3f",x);
+}
