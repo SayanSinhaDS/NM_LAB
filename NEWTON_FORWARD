@@ -1,0 +1,41 @@
+#include<stdio.h>
+#include<math.h>
+int main()
+{
+	int i,n,j;
+	float x[100],y[100][100],a,h,u,p,sum;
+	printf("read the no of arguments: ");
+	scanf("%d", &n);
+	for(i=0;i<=n-1;i++){
+		printf("enter the array value of x: ");
+		scanf("%f",&x[i]);
+	}
+	for(i=0;i<=n-1;i++){
+		printf("enter the array value of y: ");
+		scanf("%f",&y[i][0]);
+	}
+	for(j=1;j<=n-1;j++){
+		for(i=0;i<=n-1-j;i++){
+			y[i][j]=y[i+1][j-1]-y[i][j-1];
+		}
+	}
+	printf("the forward difference table: \n");
+	for(i=0;i<=n-1;i++){
+		for(j=0;j<=n-1-i;j++){
+			printf("%0.1f \t",y[i][j]);
+		}
+		printf("\n");
+	}
+	printf("read the interpolation: ");
+	scanf("%f", &a);
+	h=x[1]-x[0];
+	u=(a-x[0])/h;
+	sum=y[0][0];
+	p=1.0;
+	for(j=1;j<=n-1;j++){
+		p=p*(u-j+1)/j;
+		sum=sum+p*y[0][j];
+	}
+	printf("display the sum at interpolation will be: %0.3f", sum);
+	return 0;
+}
