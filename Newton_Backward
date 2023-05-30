@@ -1,0 +1,45 @@
+#include<stdio.h>
+int main()
+{
+    int i,n,j;
+    float x[100],y[100][100],a,h,u,p,sum;
+    printf("Enter the number of arguments: \n");
+    scanf("%d",&n);
+    for(i=0;i<=n-1;i++)
+    {
+        printf("Enter the value of x:\n");
+        scanf("%f",&x[i]);
+    }
+    for(i=0;i<=n-1;i++)
+    {
+        printf("Enter the value of y:\n");
+        scanf("%f",&y[i][0]);
+    }
+    for(j=1;j<=n-1;j++){
+        for(i=j;i<=n-1;i++)
+        {
+            y[i][j]=y[i][j-1]-y[i-1][j-1];
+        }
+    }
+    printf("The backward difference table is\n");
+    for(i=0;i<=n-1;i++)
+    {
+        for(j=0;j<=i;j++)
+        {
+            printf("%.1f\t",y[i][j]);
+        }
+        printf("\n");
+    }
+    printf("Read the interpolation\n");
+    scanf("%f",&a);
+    h=x[1]-x[0];
+    u=(a-x[n-1])/h;
+    sum=y[n-1][0];
+    p=1.0;
+    for(j=1;j<=n-1;j++)
+    {
+        p=p*(u+j-1)/j;
+        sum=sum+p*y[n-1][j];
+    }
+    printf("Display the sum\n%.3f",sum);
+}
